@@ -1,0 +1,51 @@
+[
+  {
+    "outputFileName": "wwwroot/bundles/layout.css",
+    "inputFiles": [
+      "wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "wwwroot/css/site.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true,
+      "preserveImportantComments": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/bundles/futbol.css",
+    "inputFiles": [
+      "wwwroot/css/futbol/futbol.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true,
+      "preserveImportantComments": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/bundles/futbol.js",
+    "inputFiles": [
+      "wwwroot/js/futbol/futbol.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true,
+      "preserveImportantComments": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/bundles/layout.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery/dist/jquery.js",
+      "wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "wwwroot/js/site.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true,
+      "preserveImportantComments": false
+    }
+  }
+]

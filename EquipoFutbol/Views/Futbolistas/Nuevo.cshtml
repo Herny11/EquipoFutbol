@@ -1,0 +1,100 @@
+﻿@model FutbolModels
+<script>
+    $(function () {
+        $("#SaveCrea").click(function () {
+            var nombre = $("#Nombres").val(),
+                apellido = $("#Apellidos").val(),
+                edad = $("#Edad").val(),
+                posicion = $("#dropPosicion").val(),
+                fecha = parseFloat($("#FechaRegristro").val());
+
+            var Futbolistas = {
+
+                Nombres: nombre,
+                Apellidos: apellido,
+                Edad: edad,
+                PosicionID: posicion,
+                FechaRegristro: fecha
+            }
+            $.ajax({
+                type: "POST",
+                url: "/Futbolistas/Nuevo", //--> controlador/accion
+                cache: false,
+                data: Futbolistas, //--> datos a enviar
+                success: function (res) {
+
+                    if (res.status) {
+                        alert("Futbolista registrado correctamente.");
+
+                        setTimeout(() => {
+                            location.href = "/Futbolistas/";
+
+                        }, 1500);
+                    }
+                    else {
+                        alert("Ocurrio un error!")
+                    }
+
+                },
+                error: function () {
+                }
+            })
+
+
+        });
+    })
+</script>
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2> Agregar Futbolista</h2>
+        </div>
+        <div class="modal-body">
+            <form asp-action="Nuevo" asp-controller="Futbolistas" method="POST">
+                <div class="form-row col-12">
+                    <label for="Nombres" class="control-label"> Nombre</label>
+                    <input id="Nombres" type="text" name="Nombres" class="form-control" placeholder="Nombre del Jugador" onblur="validaCampo()"/>
+                    <div class="invalid-feedback invalid-name">
+                        First Name cannot be empty
+                    </div>
+                    <span class="text-danger"></span>
+                </div>
+                <div class="form-row col-12">
+                    <label for="Apellidos" class="control-label"> Apellido </label>
+                    <input id="Apellidos" type="text" name="Apellidos" class="form-control" placeholder="Apellidos del Jugador" onblur="validaCampo()" />
+                    <div class="invalid-feedback last_name_validation">
+                        Last Name cannot be empty
+                    </div>
+                    <span class="text-danger"></span>
+                </div>
+                <div class="form-row col-12">
+                    <label for="Posicion" class="control-label"> Posicion</label>
+                    <select name="PosicionID" id="dropPosicion" value="">
+                    </select>
+                </div>
+
+                <div class="form-row col-12">
+                     <label for="FechaRegistro" class="control-label"> Fecha de Registro</label>
+                     <input id="FechaRegristro" type="date" name="FechaRegistro" class="form-control" placeholder="Fecha de Registro" onblur="validaCampo()"/>
+                     <span class="text-danger"></span>
+                </div>
+                <div class="form-row col-12">
+                    <label for="Edad" class="control-label"> Edad</label>
+                    <input id="Edad" type="number" min="0" max="100" name="Edad" class="form-control" placeholder="Edad del Jugador" onblur="validaCampo()" />
+                    <div class="invalid-feedback edad_validation">
+                        Age cannot be empty
+                    </div>
+                    <span class="text-danger"></span>
+                </div>
+     
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCerrar">Close</button>
+            <button type="button" class="btn btn-primary" id="SaveCrea">Guardar</button>
+
+        </div>
+    </div>
+</div>

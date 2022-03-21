@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\EquipoFutbol",
+    "\\EquipoFutbol\\bin",
+    "\\EquipoFutbol\\Controllers",
+    "\\EquipoFutbol\\Views",
+    "\\EquipoFutbol\\Views\\Home"
+  ],
+  "SelectedNode": "\\EquipoFutbol\\Views\\Home\\Index.cshtml",
+  "PreviewInSolutionExplorer": false
+}

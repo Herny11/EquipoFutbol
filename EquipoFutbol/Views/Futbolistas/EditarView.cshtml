@@ -1,0 +1,101 @@
+﻿@model EquipoFutbol.Entities.Futbolistas
+
+<script>
+    $(function () {
+        
+
+        $("#Actualizar").click(function () {
+            var nombreEdit = $("#NombresEdita").val(),
+                apellidoEdit = $("#ApellidosEdita").val(),
+                fechaEdit = $("#FechaEdita").val(),
+                edadEdit= $("#EdadEdita").val(),
+                PosicionEdit = $("#dropPosicion").val()
+
+            var futbolista = {
+                FutbolistasID: parseInt("@Model.FutbolistasID"),
+                Nombres: nombreEdit,
+                Apellidos: apellidoEdit,
+                Edad: edadEdit,
+                FechaRegristro: fechaEdit,
+                PosicionID: PosicionEdit
+            }
+            console.log("click")
+
+            $.ajax({
+                type: "POST",
+                url: "/Futbolistas/Editar",
+                data: futbolista,
+                success: function (res) {
+
+                    if (res.status) {
+                        alert("Futbolista actualizado correctamente.");
+
+                        setTimeout(() => {
+                            location.href = "/Futbolistas/";
+
+                        }, 1500);
+                    }
+
+                },
+                error: function () {
+
+            }
+            });
+        });
+    })
+
+</script>
+<hi>Editar</hi>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2> Editar Futbolista</h2>
+        </div>
+        <div class="modal-body">
+            <form asp-action="Editar" asp-controller="Futbolistas" method="POST">
+                <div class="form-row col-12">
+                    <label for="Nombres" class="control-label"> Nombre </label>
+                    <input id="NombresEdita" type="text" name="Nombres" class="form-control" placeholder="Nombres del Jugador" value="@Model.Nombres" onblur="validaCampo()" />
+                    <div class="invalid-feedback invalid-name">
+                        First Name cannot be empty
+                    </div>
+                    <span class="text-danger"></span>
+                </div>
+                <div class="form-row col-12">
+                    <label for="Apellidos" class="control-label"> Apellido </label>
+                    <input id="ApellidosEdita" type="text" name="Apellidos" class="form-control" placeholder="Apellidos del Jugador" value="@Model.Apellidos" onblur="validaCampo()" />
+                    <div class="invalid-feedback last_name_validation">
+                        Last Name cannot be empty
+                    </div>
+                    <span class="text-danger"></span>
+                </div>
+                <div class="form-row col-12">
+                    <label for="Edad" class="control-label"> Edad </label>
+                    <input id="EdadEdita" type="number" min="0" max="100" name="Edad" class="form-control" placeholder="Edad" value="@Model.Edad" onblur="validaCampo()" />
+                    <div class="invalid-feedback edad_validation">
+                        Age cannot be empty
+                    </div>
+                    <span class="text-danger"></span>
+                </div>
+                <div class="form-row col-12">
+                    <label for="FechaRegristro" class="control-label"> Fecha de Registro</label>
+                    <input id="txtFechaEdita" type="date" name="FechaRegistro" class="form-control" placeholder="Fecha de Registro" value="@Model.FechaRegristro" />
+                    <span class="text-txtCategoriaEditadanger"></span>
+                </div>
+
+                <div class="form-row col-12">
+                        <label for="Posicion" class="control-label"> Posicion</label>
+                        <select name="PocicionID" id="dropPosicion" value="@Model.PosicionID">
+                        </select>
+                      
+                </div>
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btcCerrarEditar">Close</button>
+            <button type="button" class="btn btn-primary" id="Actualizar">Actualizar</button>
+
+        </div>
+    </div>
+</div>

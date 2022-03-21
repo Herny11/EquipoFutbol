@@ -1,0 +1,61 @@
+﻿@model IEnumerable<EquipoFutbol.Entities.View_Futbolistas>
+
+
+<link rel="stylesheet" href="~/bundles/futbol.min.css" asp-append-version="true" />
+
+
+<div class=" container">
+    <div class=" cabecera">
+        <h1> Futbolistas</h1>
+    </div>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th> ID </th>
+                <th> Nombres </th>
+                <th> Apellidos </th>
+                <th> Edad </th>
+                <th> Posicion </th>
+                <th> Fecha de Registro </th>
+                <th>
+                    <button class="btn btn-outline-success" id="btnAbreModal" type="button" data-target="#modalFutbol"> Agregar +</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) // va a mostrar todos los campos por cada registro de la tabla
+            {
+            <tr>
+                <td>
+                    @item.FutbolistasID
+                </td>
+                <td>
+                    @item.Nombres
+                </td>
+                <td>
+                    @item.Apellidos
+                </td>
+                <td>
+                    @item.Edad
+                </td>
+                <td>
+                    @item.Posicion
+                </td>
+                <td>
+                    @item.FechaRegristro
+                    @*@string.Format("{0:dd'/'MM'/'yyyy}", item.fechaCreacion)*@
+                </td>
+
+
+                <td>
+                    <a id="btnEditar_@item.FutbolistasID"><i class="fa fa-marker fa-lg"></i></a>
+                    <a id="btnEliminar_@item.FutbolistasID" class="text-danger ml-1"><i class="fa fa-trash-alt fa-lg"></i></a>
+                </td>
+
+            </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
